@@ -12,7 +12,7 @@ sealed class Result<T> {
 
 inline fun <R, T> Result<T>.fold(
     onSuccess: (value: T) -> R,
-    onFailure: (exception: Throwable) -> R
+    onFailure: (domainException: DomainException) -> R
 ): R = when (this) {
     is Result.Success -> onSuccess(data)
     is Result.Failure -> onFailure(domainException)

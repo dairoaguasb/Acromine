@@ -11,6 +11,8 @@ import dairo.aguas.acromine.data.repository.exception.ExceptionAcromineRepositor
 import dairo.aguas.acromine.domain.repository.AcromineRepository
 import dairo.aguas.acromine.domain.repository.DomainExceptionRepository
 import dairo.aguas.acromine.domain.usecase.GetAbbreviationDefinitionsUseCase
+import dairo.aguas.acromine.ui.viewmodel.SearchViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import retrofit2.Retrofit
 
 /**
@@ -19,6 +21,15 @@ import retrofit2.Retrofit
 @Module
 @InstallIn(ViewModelComponent::class)
 object SearchModule {
+
+    @Provides
+    fun searchViewModelProvider(
+        getAbbreviationDefinitionsUseCase: GetAbbreviationDefinitionsUseCase,
+        coroutineDispatcher: CoroutineDispatcher
+    ) = SearchViewModel(
+        getAbbreviationDefinitionsUseCase,
+        coroutineDispatcher
+    )
 
     @Provides
     @ViewModelScoped
