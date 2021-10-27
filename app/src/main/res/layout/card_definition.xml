@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/margin_4dp"
+    android:layout_marginTop="@dimen/margin_4dp"
+    android:layout_marginEnd="@dimen/margin_4dp"
+    android:layout_marginBottom="@dimen/margin_4dp"
+    app:cardCornerRadius="@dimen/size_8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imvDefinition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:layout_marginBottom="@dimen/margin_8dp"
+            android:src="@drawable/ic_text_fields"
+            app:layout_constraintBottom_toBottomOf="@+id/txvDefinitionName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txvDefinitionName" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imvNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_8dp"
+            android:src="@drawable/ic_navigate_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txvDefinitionName"
+            style="@style/TextBlackRegular16"
+            android:layout_width="@dimen/size_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imvNext"
+            app:layout_constraintStart_toEndOf="@+id/imvDefinition"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="somatic mutation and recombination test" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Acromine</string>
+    <string name="search_title">Buscador</string>
+    <string name="search_abbreviation">Abreviación</string>
 </resources>
