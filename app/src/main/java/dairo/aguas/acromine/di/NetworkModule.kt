@@ -68,4 +68,4 @@ object NetworkModule {
 
 private const val MAX_REQUEST = 1
 private const val TIMEOUT = 30L
-private const val BASE_URL = "http://www.nactem.ac.uk/software/acromine/dictionary.py"
+private const val BASE_URL = "http://www.nactem.ac.uk/software/"
