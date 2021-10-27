@@ -21,7 +21,7 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     private val getAbbreviationDefinitionsUseCase: GetAbbreviationDefinitionsUseCase,
     private val coroutineDispatcher: CoroutineDispatcher
-) : BaseViewModel<SearchState>(SearchState.Loading) {
+) : BaseViewModel<SearchState>(SearchState.Empty) {
 
     fun getAbbreviationDefinitions(abbreviation: String) {
         getAbbreviationDefinitionsUseCase.invoke(abbreviation).map { result ->

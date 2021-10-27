@@ -7,6 +7,8 @@ import dairo.aguas.acromine.ui.model.SearchViewData
  */
 sealed class SearchState {
 
+    object Empty : SearchState()
+
     object Loading : SearchState()
 
     class Success(val data: List<SearchViewData>) : SearchState()
