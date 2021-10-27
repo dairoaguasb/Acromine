@@ -10,6 +10,7 @@ import dairo.aguas.acromine.data.repository.AcromineRepositoryImpl
 import dairo.aguas.acromine.data.repository.exception.ExceptionAcromineRepositoryImpl
 import dairo.aguas.acromine.domain.repository.AcromineRepository
 import dairo.aguas.acromine.domain.repository.DomainExceptionRepository
+import dairo.aguas.acromine.domain.usecase.GetAbbreviationDefinitionsUseCase
 import retrofit2.Retrofit
 
 /**
@@ -18,6 +19,11 @@ import retrofit2.Retrofit
 @Module
 @InstallIn(ViewModelComponent::class)
 object SearchModule {
+
+    @Provides
+    @ViewModelScoped
+    fun getAbbreviationDefinitionsUseCaseProvider(acromineRepository: AcromineRepository) =
+        GetAbbreviationDefinitionsUseCase(acromineRepository)
 
     @Provides
     @ViewModelScoped
