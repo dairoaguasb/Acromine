@@ -5,6 +5,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dairo.aguas.acromine.domain.model.fold
 import dairo.aguas.acromine.domain.usecase.GetAbbreviationDefinitionsUseCase
 import dairo.aguas.acromine.ui.base.BaseViewModel
+import dairo.aguas.acromine.ui.model.SearchViewData
 import dairo.aguas.acromine.ui.state.SearchState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.flowOn
@@ -26,7 +27,11 @@ class SearchViewModel @Inject constructor(
         getAbbreviationDefinitionsUseCase.invoke(abbreviation).map { result ->
             result.fold(
                 onSuccess = {
-                    print(it.fullForms.size)
+                    mutableState.value = SearchState.Success(
+                        data = it.fullForms.map { fullForm ->
+                            SearchViewData(fullForm)
+                        }
+                    )
                 },
                 onFailure = {
                     mutableState.value = SearchState.Error(manageException(it))
