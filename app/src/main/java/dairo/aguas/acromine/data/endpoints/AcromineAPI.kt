@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface AcromineAPI {
 
     @GET(ABBREVIATION)
-    suspend fun getAbbreviationDefinitions(@Query("sf") abbreviation: String): AbbreviationDTO
+    suspend fun getAbbreviationDefinitions(@Query("sf") abbreviation: String): List<AbbreviationDTO>
 }
 
 private const val ABBREVIATION = "acromine/dictionary.py"
