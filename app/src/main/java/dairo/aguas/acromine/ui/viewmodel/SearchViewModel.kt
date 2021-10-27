@@ -2,6 +2,8 @@ package dairo.aguas.acromine.ui.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dairo.aguas.acromine.domain.exception.DataNotFound
+import dairo.aguas.acromine.domain.exception.DomainException
 import dairo.aguas.acromine.domain.model.fold
 import dairo.aguas.acromine.domain.usecase.GetAbbreviationDefinitionsUseCase
 import dairo.aguas.acromine.ui.base.BaseViewModel
@@ -34,11 +36,22 @@ class SearchViewModel @Inject constructor(
                     )
                 },
                 onFailure = {
-                    mutableState.value = SearchState.Error(manageException(it))
+                    mutableState.value = getStateFromException(it)
                 }
             )
         }.onStart {
             mutableState.value = SearchState.Loading
         }.flowOn(coroutineDispatcher).launchIn(viewModelScope)
+    }
+
+    private fun getStateFromException(domainException: DomainException): SearchState {
+        return when (domainException) {
+            is DataNotFound -> {
+                SearchState.DataNotFound
+            }
+            else -> {
+                SearchState.Error(manageException(domainException))
+            }
+        }
     }
 }

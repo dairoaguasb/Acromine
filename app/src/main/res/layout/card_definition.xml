@@ -28,29 +28,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/txvDefinitionName" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imvNext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_8dp"
-                android:src="@drawable/ic_navigate_next"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txvDefinitionName"
                 style="@style/TextBlackRegular16"
                 android:layout_width="@dimen/size_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_8dp"
+                android:layout_marginEnd="@dimen/margin_8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imvNext"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintEnd_toStartOf="@+id/txvVariations"
                 app:layout_constraintStart_toEndOf="@+id/imvDefinition"
                 app:layout_constraintTop_toTopOf="parent"
                 app:text="@{searchViewData.definitionName}"
                 tools:text="somatic mutation and recombination test" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txvVariations"
+                style="@style/TextBlackBold16"
+                android:layout_width="@dimen/size_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:text="@{searchViewData.totalVariations}"
+                tools:text="12" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

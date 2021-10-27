@@ -19,6 +19,12 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
+    <style name="TextBlackBold16" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/text_16sp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="TextBlackBold22" parent="Widget.MaterialComponents.TextView">
         <item name="android:textSize">@dimen/text_22sp</item>
         <item name="android:textColor">@android:color/black</item>

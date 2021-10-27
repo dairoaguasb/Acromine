@@ -10,6 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dairo.aguas.acromine.databinding.FragmentSearchBinding
+import dairo.aguas.acromine.extension.gone
+import dairo.aguas.acromine.extension.visible
 import dairo.aguas.acromine.ui.adapter.DefinitionAdapter
 import dairo.aguas.acromine.ui.base.BaseFragment
 import dairo.aguas.acromine.ui.state.SearchState
@@ -78,6 +80,11 @@ class SearchFragment : BaseFragment() {
             }
             is SearchState.Success -> {
                 definitionAdapter.submitList(searchState.data)
+                binding.laEmpty.gone()
+            }
+            is SearchState.DataNotFound -> {
+                definitionAdapter.submitList(null)
+                binding.laEmpty.visible()
             }
         }
     }

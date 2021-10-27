@@ -11,6 +11,8 @@ sealed class SearchState {
 
     object Loading : SearchState()
 
+    object DataNotFound : SearchState()
+
     class Success(val data: List<SearchViewData>) : SearchState()
 
     class Error(val resource: Int) : SearchState()

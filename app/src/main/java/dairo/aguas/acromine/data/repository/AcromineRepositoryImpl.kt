@@ -1,6 +1,7 @@
 package dairo.aguas.acromine.data.repository
 
 import dairo.aguas.acromine.data.endpoints.AcromineAPI
+import dairo.aguas.acromine.domain.exception.DataNotFound
 import dairo.aguas.acromine.domain.model.LongForms
 import dairo.aguas.acromine.domain.model.Result
 import dairo.aguas.acromine.domain.repository.AcromineRepository
@@ -18,7 +19,11 @@ class AcromineRepositoryImpl(
 
     override fun getAbbreviationDefinitions(abbreviation: String) = flow<Result<LongForms>> {
         val apiResult = acromineAPI.getAbbreviationDefinitions(abbreviation)
-        emit(Result.Success(apiResult.first().toDomainLongForms()))
+        if (apiResult.isNotEmpty()) {
+            emit(Result.Success(apiResult.first().toDomainLongForms()))
+        } else {
+            emit(Result.Failure(DataNotFound))
+        }
     }.catch {
         emit(Result.Failure(domainExceptionRepository.manageError(it)))
     }
