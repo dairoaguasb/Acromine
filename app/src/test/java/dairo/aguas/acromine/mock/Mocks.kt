@@ -36,7 +36,7 @@ object Mocks {
         since = 1900
     )
 
-    private val MOCK_FULL_FORM = FullForm(
+    val MOCK_FULL_FORM = FullForm(
         freq = 100,
         lf = "lf",
         variationObjects = mutableListOf(MOCK_VARIATION_OBJECTS),
