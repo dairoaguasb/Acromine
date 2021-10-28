@@ -1,14 +1,15 @@
 package dairo.aguas.acromine.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import dairo.aguas.acromine.R
 import dairo.aguas.acromine.databinding.FragmentDetailBinding
+import dairo.aguas.acromine.ui.adapter.DetailAdapter
 import dairo.aguas.acromine.ui.model.SearchViewData
 import dairo.aguas.acromine.ui.viewmodel.DetailViewModel
 
@@ -16,6 +17,7 @@ import dairo.aguas.acromine.ui.viewmodel.DetailViewModel
 class DetailFragment : Fragment() {
 
     private val viewModel: DetailViewModel by viewModels()
+    private val detailAdapter by lazy { DetailAdapter() }
 
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
@@ -35,6 +37,7 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setSearchViewData()
         configureDataBinding()
+        setupAdapter()
     }
 
     override fun onDestroyView() {
@@ -49,5 +52,13 @@ class DetailFragment : Fragment() {
     private fun configureDataBinding() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+    }
+
+    private fun setupAdapter() {
+        binding.rvDefinition.apply {
+            adapter = detailAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+        detailAdapter.submitList(searchViewData.variations)
     }
 }
