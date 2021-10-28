@@ -11,7 +11,12 @@ import dairo.aguas.acromine.ui.viewholder.DefinitionViewHolder
 /**
  * Created by Dairo Aguas B on 27/10/2021.
  */
-class DefinitionAdapter : ListAdapter<SearchViewData, DefinitionViewHolder>(SearchDiffCallback) {
+class DefinitionAdapter(private val onListenerDefinitionAdapter: OnListenerDefinitionAdapter) :
+    ListAdapter<SearchViewData, DefinitionViewHolder>(SearchDiffCallback) {
+
+    interface OnListenerDefinitionAdapter {
+        fun onItemSelected(searchViewData: SearchViewData)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefinitionViewHolder {
         return DefinitionViewHolder(
@@ -19,7 +24,8 @@ class DefinitionAdapter : ListAdapter<SearchViewData, DefinitionViewHolder>(Sear
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            onListenerDefinitionAdapter
         )
     }
 

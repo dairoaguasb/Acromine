@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dairo.aguas.acromine.databinding.FragmentSearchBinding
@@ -14,15 +15,16 @@ import dairo.aguas.acromine.extension.gone
 import dairo.aguas.acromine.extension.visible
 import dairo.aguas.acromine.ui.adapter.DefinitionAdapter
 import dairo.aguas.acromine.ui.base.BaseFragment
+import dairo.aguas.acromine.ui.model.SearchViewData
 import dairo.aguas.acromine.ui.state.SearchState
 import dairo.aguas.acromine.ui.viewmodel.SearchViewModel
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class SearchFragment : BaseFragment() {
+class SearchFragment : BaseFragment(), DefinitionAdapter.OnListenerDefinitionAdapter {
 
     private val viewModel: SearchViewModel by viewModels()
-    private val definitionAdapter by lazy { DefinitionAdapter() }
+    private val definitionAdapter by lazy { DefinitionAdapter(this) }
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
@@ -87,5 +89,11 @@ class SearchFragment : BaseFragment() {
                 binding.laEmpty.visible()
             }
         }
+    }
+
+    override fun onItemSelected(searchViewData: SearchViewData) {
+        findNavController().navigate(
+            SearchFragmentDirections.actionSearchFragmentToDetailFragment(searchViewData)
+        )
     }
 }
