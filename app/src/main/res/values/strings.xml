@@ -9,4 +9,7 @@
     <string name="error_parsing_error">Error al transformar los datos en la capa de datos</string>
     <string name="error_internet_connection">Error en la conexión de internet, intentalo de nuevo en un momento</string>
     <string name="error_some_wrong">Ocurrió un problema</string>
+    <string name="detail_freq">Frecuencia</string>
+    <string name="detail_since">Desde</string>
+
 </resources>
